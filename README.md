@@ -2,7 +2,7 @@
 Company birthdays and anniversaries notification system
 
 ## About Spectre
-Spectre helps you notify our employees about birthdays and other employees anniversaries!
+Spectre helps you notify your employees about birthdays and other employees anniversaries!
 
 ## Getting Started
 
