@@ -1,0 +1,56 @@
+<div>
+    @section('header')
+        <h1 class="font-bold text-3xl">Create <span class="hidden sm:inline-block">a new user</span></h1>
+
+        <div>
+            <button class="button primary" form="save">
+                <i class="fas fa-save sm:mr-2"></i>
+                <span class="hidden sm:inline-block">Save</span>
+            </button>
+
+            <a href="{{ backOrHome() }}" class="button border-none">
+                <i class="fas fa-times sm:mr-2"></i>                
+                <span class="hidden sm:inline-block">Cancel</span>
+            </a>
+        </div>
+    @endsection
+
+    <div class="bg-white shadow p-8 rounded">
+        <form id="save" wire:submit.prevent="save">
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                    <span class="font-medium text-blue-500">General</span>
+                </div>
+
+                <div class="mt-2 sm:mt-0 sm:pl-8 sm:border-l">
+                    <div class="form-group">
+                        <label>E-mail address</label>
+                        <input class="form-control" type="text" wire:model.lazy="email" />
+                        @error('email') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-12" />
+
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                    <span class="font-medium text-blue-500">Security</span>
+                </div>
+
+                <div class="mt-2 sm:mt-0 sm:pl-8 sm:border-l">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input class="form-control" type="password" wire:model.lazy="password" />
+                        @error('password') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="form-group mt-6">
+                        <label>Password confirmation</label>
+                        <input class="form-control" type="password" wire:model.lazy="password_confirmation" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

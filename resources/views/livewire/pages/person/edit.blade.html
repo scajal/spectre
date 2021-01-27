@@ -1,0 +1,127 @@
+<div>
+    @section('header')
+        <h1 class="font-bold text-3xl">Edit <span class="hidden sm:inline-block">a person</span></h1>
+
+        <div>
+            <button class="button primary" form="save">
+                <i class="fas fa-save sm:mr-2"></i>
+                <span class="hidden sm:inline-block">Save</span>
+            </button>
+
+            <a href="{{ backOrHome() }}" class="button border-none">
+                <i class="fas fa-times sm:mr-2"></i>
+                <span class="hidden sm:inline-block">Cancel</span>
+            </a>
+        </div>
+    @endsection
+
+    <div class="bg-white shadow p-8 rounded">
+        <form id="save" wire:submit.prevent="save">
+            <div>
+                <div class="sm:max-w-xs mx-auto">
+                    <div class="relative h-56 rounded-lg border-dashed border-4 border-blue-500 flex justify-center items-center z-0">
+                        <div class="absolute">
+                            <div class="flex flex-col items-center">
+                                <div class="picture-invite {{ $person->picture || $picture ? 'hidden' : '' }} text-center">
+                                    <i class="fas fa-image fa-4x text-blue-500"></i>
+                                    <span class="block text-blue-500 font-medium mt-4">Upload a picture (max. 1MB)</span>
+                                </div>
+                                
+                                {{-- If the user has a picture and has not uploaded a new one --}}
+                                @unless($picture)
+                                    @if($person->picture)
+                                        <div class="picture-preview h-full w-full">
+                                            <img class="h-auto w-full rounded" src="{{ $person->picture_url }}" />
+                                        </div>
+                                    @endif
+                                @endunless
+
+                                {{-- If the user has uploaded a new picture --}}
+                                @if($picture)
+                                    <div class="picture-preview h-full w-full">
+                                        <img class="h-auto w-full rounded" src="{{ $picture->temporaryUrl() }}" />
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        
+                        {{-- Remove picture --}}
+                        <button type="button" wire:click="removePicture" class="{{ $person->picture || $picture ? '' : 'opacity-0 select-none' }} absolute -right-2 -top-2 z-10 bg-white rounded-full py-2 shadow transition px-4 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        
+                        <input id="picture" type="file" class="h-full w-full opacity-0" accept="image/*" wire:model="picture">
+                    </div>
+                </div>
+
+                @error('picture') <span class="error text-center block">{{ $message }}</span> @enderror
+                
+                {{-- Picture upload progress --}}
+                <span id="picture-progress" class="opacity-0 transition mt-4 block font-medium text-center block">Uploading...</span>
+            </div>
+
+            <hr class="my-12" />
+
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                    <span class="font-medium text-blue-500">General</span>
+                </div>
+
+                <div class="mt-2 sm:mt-0 sm:pl-8 sm:border-l">
+                    <div class="form-group">
+                        <label>First name</label>
+                        <input class="form-control" type="text" wire:model.lazy="person.first_name" />
+                        @error('person.first_name') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                
+                    <div class="form-group mt-6">
+                        <label>Last name</label>
+                        <input class="form-control" type="text" wire:model.lazy="person.last_name" />
+                        @error('person.last_name') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="form-group mt-6">
+                        <label>Birth date</label>
+                        <input class="form-control" type="date" wire:model.lazy="person.birth_date" />
+                        @error('person.birth_date') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-12" />
+
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                    <span class="font-medium text-blue-500">Employment</span>
+                </div>
+
+                <div class="mt-2 sm:mt-0 sm:pl-8 sm:border-l">
+                    <div class="form-group">
+                        <label>Entry date</label>
+                        <input class="form-control" type="date" wire:model.lazy="person.entry_date" />
+                        @error('person.entry_date') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@push('scripts')
+    <script>
+        // Listen for the image upload start event.
+        document.querySelector('#picture').addEventListener('livewire-upload-start', () => {
+            document.querySelector('#picture-progress').classList.remove('opacity-0');
+        });
+
+        // Listen for the image upload finish event.
+        document.querySelector('#picture').addEventListener('livewire-upload-finish', () => {
+            document.querySelector('#picture-progress').classList.add('opacity-0');
+        });
+
+        // Listen for the image upload error event.
+        document.querySelector('#picture').addEventListener('livewire-upload-error', () => {
+            document.querySelector('#picture-progress').classList.add('opacity-0');
+        });
+    </script>
+@endpush

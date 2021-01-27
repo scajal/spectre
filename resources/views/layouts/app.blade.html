@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{-- Metadata --}}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        {{-- Page information --}}
+        <title>{{ env('APP_NAME') }}</title>
+
+        {{-- Styles --}}
+        @livewireStyles
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+        {{-- Scripts --}}
+        @livewireScripts
+        <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script>
+        <script src="{{ mix('js/manifest.js') }}"></script>
+        <script src="{{ mix('js/vendor.js') }}"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
+    </head>
+
+    <body class="antialiased bg-blue-50 bg-opacity-60 text-gray-700">
+        @auth
+            {{-- Navigation bar --}}
+            <livewire:components.navigation-bar />
+        @endauth
+
+        @hasSection('header')
+            {{-- Page header --}}
+            <div class="bg-white shadow sticky top-0 z-10">
+                <div class="px-4 py-4 sm:max-w-5xl mx-auto flex justify-between items-center">
+                    @yield('header')
+                </div>
+            </div>
+        @endif
+
+        {{-- Main content --}}
+        <div class="px-4 pb-4 my-4 sm:max-w-5xl mx-auto">
+            {{ $slot }}
+        </div>
+
+        {{-- Custom page scripts --}}
+        @stack('scripts')
+    </body>
+</html>

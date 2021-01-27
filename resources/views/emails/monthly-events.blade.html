@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <body style="background-color: #f5f9ff; font-family: 'Segoe UI', sans-serif;">
+        <div style="padding: 2rem;">
+            <h1 style="text-align: center; display: block; width: 100%; color: #3b82f6; text-transform: lowercase">{{ config('app.name') }}</h1>
+
+            <h2 style="text-align: center; display: block; width: 100%; margin: 2rem auto;">{{ \Carbon\Carbon::today()->format('F') }}</h2>
+
+            @if(count($birthdays) > 0)
+                <div style="background-image: url('{{ $message->embed(asset('images/balloons.png')) }}'); background-size: cover; border: 1px solid rgb(229, 231, 235); background-color: white; padding: 2rem; max-width: 448px; margin: 2rem auto; border-radius: 2px;">
+                    <h2 style="text-align: center; display: block; width: 100%;">Birthdays</h2>
+                    @foreach($birthdays as $person)
+                        <div style="background-color: white; margin-top: 2rem; border: 1px solid rgb(229, 231, 235); padding: 1rem; border-radius: 2px; text-align: center; max-width: 256px; margin-left: auto; margin-right: auto;">
+                            <img src="{{ $message->embed(asset('storage/pictures/' . $person->thumbnail)) }}" style="width: 150px; height:auto; border-radius: 2px;" />
+                            <div style="text-align: center; margin-top: 1rem">
+                                <h2 style="margin: 0; padding: 0;">{{ $person->full_name }}</h2>
+                                <span>{{ $person->birth_date }}</span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+            
+
+            @if(count($anniversaries) > 0)
+                <div style="background-image: url('{{ $message->embed(asset('images/balloons.png')) }}'); background-size: cover; border: 1px solid rgb(229, 231, 235); background-color: white; padding: 2rem; max-width: 448px; margin: 2rem auto; border-radius: 2px;">
+                    <h2 style="text-align: center; display: block; width: 100%;">Anniversaries</h2>
+                    @foreach($anniversaries as $person)
+                        <div style="background-color: white; margin-top: 2rem; border: 1px solid rgb(229, 231, 235); padding: 1rem; border-radius: 2px; text-align: center; max-width: 256px; margin-left: auto; margin-right: auto;">
+                            <img src="{{ $message->embed(asset('storage/pictures/' . $person->thumbnail)) }}" style="width: 150px; height:auto; border-radius: 2px;" />
+                            <div style="text-align: center; margin-top: 1rem">
+                                <h2 style="margin: 0; padding: 0;">{{ $person->full_name }}</h2>
+                                <span>{{ $person->entry_date }}</span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<div>
+    @section('header')
+        <h1 class="font-bold text-3xl">People</h1>
+
+        <a href="{{ route('people.create') }}" class="button primary">
+            <i class="fas fa-plus sm:mr-2"></i>
+            <span class="hidden sm:inline-block">Create person</span>
+        </a>
+    @endsection
+
+    <div class="data-table">
+        <input class="search" placeholder="Psst... Search by any of the shown fields" wire:model="search" />
+
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th class="key">Name</th>
+                    <th>Entry date</th>
+                    <th>Birth date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @forelse($people as $person)
+                    <tr>
+                        <td class="w-24 text-center">
+                            @if($person->picture)
+                                <img src="{{ $person->thumbnail_url }}" class="w-full h-auto rounded" />
+                            @else
+                            <i class="fas fa-image text-blue-500"></i>
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('people.edit', ['id' => $person->id]) }}"><button class="button border-none">{{ $person->full_name }}</button></a>
+                        </td>
+                        <td>{{ $person->entry_date }}</td>
+                        <td>{{ $person->birth_date }}</td>
+                    </tr>
+                @empty
+                    <tr class="text-center font-medium">
+                        <td colspan="4">No people found</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+        @unless(empty(count($people)) || $people->total() < 11)
+            <div class="pagination">
+                {{ $people->links() }}
+            </div>
+        @endunless
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div>
+    <div class="mx-auto sm:max-w-md mb-12 mt-64 text-center">
+        <livewire:components.logo size="3xl" />
+    </div>
+
+    <div class="shadow bg-white mx-auto sm:max-w-md p-8">
+        <form wire:submit.prevent="signIn">
+            <div class="form-group">
+                <label>E-mail address</label>
+                <input class="form-control" type="text" wire:model.lazy="email" />
+                @error('email') <span class="error">{{ $message }}</span> @enderror
+            </div>
+
+            <div class="form-group mt-6">
+                <label>Password</label>
+                <input class="form-control" type="password" wire:model.lazy="password" />
+                @error('password') <span class="error">{{ $message }}</span> @enderror
+            </div>
+
+            <button class="mt-8 button primary w-full">
+                <span wire:loading wire:target="signIn"><i class="fas fa-circle-notch fa-spin transition mr-4"></i></span>Sign in
+            </button>
+        </form>
+    </div>
+</div>

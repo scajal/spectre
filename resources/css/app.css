@@ -1,0 +1,185 @@
+@import '~node-snackbar/dist/snackbar.min.css';
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+|--------------------------------------------------------------------------
+| Header
+|--------------------------------------------------------------------------
+*/
+
+.header-text {
+    /* Typography */
+    @apply font-bold text-4xl;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Data table
+|--------------------------------------------------------------------------
+*/
+
+.data-table {
+    /* Borders */
+    @apply rounded;
+
+    /* Layout */
+    @apply bg-white shadow;
+}
+
+.data-table > .search {
+    /* Borders */
+    @apply border-2 border-transparent rounded-b-none rounded-t;
+
+    /* Layout */
+    @apply w-full;
+    
+    /* Margin and padding */
+    @apply p-4;
+    
+    /* Pseudo classes */
+    @apply focus:outline-none focus:border-blue-500;
+
+    /* Transitions */
+    @apply transition;
+}
+
+.data-table > table {
+    /* Layout */
+    @apply w-full;
+}
+
+.data-table thead > tr {
+    /* Layout */
+    @apply bg-blue-100;
+    
+    /* Typography */
+    @apply text-left;
+}
+
+.data-table th { 
+    /* Margin and padding */
+    @apply p-4;
+    
+    /* Typography */
+    @apply text-sm text-blue-900;
+}
+
+.data-table th.key {
+    /* Margin and padding */
+    @apply pl-8;
+}
+
+.data-table tbody > tr {
+    /* Borders */
+    @apply border-t;
+}
+
+.data-table td {
+    /* Margin and padding */
+    @apply px-4 py-2;
+}
+
+.data-table > .pagination {
+    /* Borders */
+    @apply border-t;
+
+    /* Margin and padding */
+    @apply px-4 py-2; 
+}
+
+/*
+|--------------------------------------------------------------------------
+| Forms
+|--------------------------------------------------------------------------
+*/
+
+.button {
+    /* Borders */
+    @apply border rounded;
+    
+    /* Margin and padding */
+    @apply py-2 px-4;
+    
+    /* Pseudo classes */
+    @apply hover:bg-blue-100 focus:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+
+    /* Transitions */
+    @apply transition;
+
+    /* Typography */
+    @apply text-blue-500 font-medium;
+}
+
+a.button {
+    /* Margin and padding */
+    padding-bottom: 0.65rem;
+    padding-top: 0.65rem;    
+}
+
+.button.border-none {
+    /* Borders */
+    @apply border-transparent;
+}
+
+.button.primary {
+    /* Borders */
+    @apply border border-blue-500 rounded;
+    
+    /* Layout */
+    @apply bg-blue-500;
+
+    /* Margin and padding */
+    @apply py-2 px-4;
+    
+    /* Pseudo classes */
+    @apply hover:bg-blue-600 focus:bg-blue-600 focus:outline-none;
+
+    /* Transitions */
+    @apply transition;
+
+    /* Typography */
+    @apply text-white font-medium;
+}
+
+.form-control {
+    /* Borders */
+    @apply border;
+    
+    /* Layout */
+    @apply w-full;
+    
+    /* Margin and padding */
+    @apply p-2;
+    
+    /* Pseudo classes */
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+    
+    /* Transitions */
+    @apply transition;
+}
+
+.form-group > label {
+    /* Layout */
+    @apply block;
+    
+    /* Margin and padding */
+    @apply mb-2;
+    
+    /* Typography */
+    @apply font-medium;
+}
+
+.error {
+    /* Layout */
+    @apply block;
+
+    /* Margin and padding */
+    @apply mt-2;
+
+    /* Typography */
+    @apply font-medium text-sm text-red-500;
+}

@@ -1,0 +1,23 @@
+<div class="bg-gray-800">
+    <div class="p-4 sm:max-w-5xl text-white mx-auto flex justify-between items-center">
+        {{-- Logo --}}
+        <a href="{{ route('home') }}">
+            <livewire:components.logo size="3xl" />
+        </a>
+
+        {{-- Navigation links --}}
+        <div>
+            <a href="{{ route('people.index') }}" class="text-sm font-medium py-2 px-4 rounded hover:bg-gray-700 sm:mr-2 transition">
+                <i class="fas fa-running sm:mr-2"></i><span class="hidden sm:inline-block">People</span>
+            </a>
+
+            <a href="{{ route('users.index') }}" class="text-sm font-medium py-2 px-4 rounded hover:bg-gray-700 sm:mr-2 transition">
+                <i class="fas fa-users sm:mr-2"></i><span class="hidden sm:inline-block">Users</span>
+            </a>
+
+            <a href="{{ route('logout') }}" data-turbo="false" class="text-sm font-medium py-2 px-4 rounded hover:bg-gray-700 transition">
+                <i class="fas fa-power-off sm:mr-2"></i><span class="hidden sm:inline-block">Sign out</span>
+            </a>
+        </div>
+    </div>
+</div>
