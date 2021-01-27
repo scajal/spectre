@@ -26,8 +26,8 @@ composer install
 php artisan migrate:fresh --seed
 ```
 
-You're done!
-Remember to configure the application settings in the environment file (such as database name, and mail configuration)
+You're done!  
+*Remember to configure the application settings in the environment file (such as database name, and mail configuration)*
 
 ## Usage
 
