@@ -63,5 +63,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Built with
 
-Built with ❤ using [Laravel 8](https://laravel.com), [Livewire](https://laravel-livewire.com) and [Tailwind](https://tailwindcss.com)
+Built with ❤ using [Laravel 8](https://laravel.com), [Livewire](https://laravel-livewire.com) and [Tailwind](https://tailwindcss.com)  
 Thanks to [Snackbar](https://www.polonel.com/snackbar), [FontAwesome](http://fontawesome.com/), [Turbo](https://turbo.hotwire.dev) and [Animate.css](https://animate.style/)
